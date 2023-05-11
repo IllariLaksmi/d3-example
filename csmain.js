@@ -4,13 +4,13 @@ var TDays        = {"1M":21, "3M":63, "6M":126, "1Y":252, "2Y":504, "4Y":1008 };
 var TIntervals   = {"1M":"day", "3M":"day", "6M":"day", "1Y":"week", "2Y":"week", "4Y":"month" };
 var TFormat      = {"day":"%d %b '%y", "week":"%d %b '%y", "month":"%b '%y" };
 var genRaw, genData;
-    
+
 (function() {
-    d3.csv("ibex_predicciones_4.csv", genType, function(data) {
-      genRaw         = data;
+    d3.csv("stockdata.csv", genType, function(data) {
+      genRaw = data;
       console.log("data", data)
       mainjs();
-    }); 
+    });
 }());
 
 function toSlice(data) { return data.slice(-TDays[TPeriod]); }
@@ -97,7 +97,7 @@ function hoverAll() {
               d3.select(".volume"+i).classed("hoved", true);
               d3.select(".sigma"+i).classed("hoved", true);
               displayGen(i);
-          })                  
+          })
           .on("mouseout", function(d, i) {
               d3.select(this).classed("hoved", false);
               d3.select(".stick"+i).classed("hoved", false);
